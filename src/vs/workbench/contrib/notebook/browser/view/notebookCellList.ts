@@ -208,7 +208,7 @@ export class NotebookCellList extends WorkbenchList<CellViewModel> {
 		const elementTop = this.view.elementTop(index);
 		const viewItemOffset = elementTop;
 
-		if (viewItemOffset < scrollTop || viewItemOffset > wrapperBottom) {
+		if (viewItemOffset < scrollTop || viewItemOffset >= wrapperBottom) {
 			this.view.setScrollTop(viewItemOffset - this.view.renderHeight / 2);
 		}
 	}

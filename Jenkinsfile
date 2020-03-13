@@ -1,5 +1,5 @@
 pipeline {
-  agent {
+  agent any /*{
     kubernetes {
       label 'geonhuiy-vscode'
       yaml """
@@ -11,7 +11,7 @@ pipeline {
           - image: nginx
       """
     }
-  }
+  }*/
   stages {
 
     stage('Build') {

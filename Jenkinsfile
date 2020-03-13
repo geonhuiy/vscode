@@ -1,31 +1,36 @@
 pipeline {
-	agent {
+  agent {
     kubernetes {
-      label 'vscode'
-      defaultContainer 'jnlp'
+      label 'geonhuiy-vscode'
       yaml """
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: yarn-build
-    image: geonhuiy/vscode:latest
-    command:
-    - cat
-    tty: true
-"""
+      apiVersion: v1
+      kind: Pod
+      spec:
+        containers:
+          - name: test-nginx
+          - image: nginx
+      """
     }
   }
   stages {
+
     stage('Build') {
       steps {
-        container('yarn-build') {
-					sh '''
-					yarn
-					yarn compile
-					'''
+        echo 'Build'
+      }
+    }
+    stage('Test') {
+      steps {
+        container('test-nginx') {
+          echo 'Test'
         }
       }
+    }
+    stage('Deploy') {
+      steps {
+        echo 'Deploy'
+      }
+
     }
   }
 }
